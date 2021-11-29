@@ -1,0 +1,21 @@
+#cargo-features = ["strip"]
+
+[package]
+name = "meh"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+rustyline = "9.0.0"
+colored = "2.0.0"
+
+[profile.release]
+lto = true
+panic = "abort"
+#strip = "symbols"
+opt-level = "z"
+codegen-units = 1
+
+[[bin]]
+name = "meh"
+path = "bin/meh.rs"

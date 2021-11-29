@@ -1,0 +1,96 @@
+DE<P1,S,NOM>(I) = "ich"
+DE<P1,S,GEN>(I) = "meiner"
+DE<P1,S,DAT>(I) = "mir"
+DE<P1,S,ACC>(I) = "mich"
+
+DE<P2,S,NOM>(YOU) = "du"
+DE<P2,S,GEN>(YOU) = "deiner"
+DE<P2,S,DAT>(YOU) = "dir"
+DE<P2,S,ACC>(YOU) = "dich"
+
+DE<P1,P,NOM>(WE) = "wir"
+DE<P1,P,GEN>(WE) = "unser"
+DE<P1,P,DAT>(WE) = "uns"
+DE<P1,P,ACC>(WE) = "uns"
+
+DE<P2,P,NOM>(YOU) = "ihr"
+DE<P2,P,GEN>(YOU) = "eurer"
+DE<P2,P,DAT>(YOU) = "euch"
+DE<P2,P,ACC>(YOU) = "euch"
+
+DE<P3,S,M,NOM>(HE) = "er"
+DE<P3,S,M,GEN>(HE) = "seiner"
+DE<P3,S,M,DAT>(HE) = "ihm"
+DE<P3,S,M,ACC>(HE) = "ihn"
+
+DE<P3,S,F,NOM>(SHE) = "sie"
+DE<P3,S,F,GEN>(SHE) = "ihrer"
+DE<P3,S,F,DAT>(SHE) = "ihr"
+DE<P3,S,F,ACC>(SHE) = "sie"
+
+DE<P3,S,N,NOM>(IT) = "es"
+DE<P3,S,N,GEN>(IT) = "seiner"
+DE<P3,S,N,DAT>(IT) = "ihm"
+DE<P3,S,N,ACC>(IT) = "es"
+
+DE<P3,P,NOM>(THEY) = "sie"
+DE<P3,P,GEN>(THEY) = "ihrer"
+DE<P3,P,DAT>(THEY) = "ihnen"
+DE<P3,P,ACC>(THEY) = "sie"
+
+DE<NOM>(MAN[n:S]) = "mann"
+DE<GEN>(MAN[n:S]) = "mannes"
+DE<DAT>(MAN[n:S]) = "mann"
+DE<ACC>(MAN[n:S]) = "mann"
+
+DE<NOM>(MAN[n:P]) = "männer"
+DE<GEN>(MAN[n:P]) = "männer"
+DE<DAT>(MAN[n:P]) = "männern"
+DE<ACC>(MAN[n:P]) = "männer"
+
+DE<NOM>(WOMAN[n:S]) = "frau"
+DE<GEN>(WOMAN[n:S]) = "frau"
+DE<DAT>(WOMAN[n:S]) = "frau"
+DE<ACC>(WOMAN[n:S]) = "frau"
+
+DE<NOM>(WOMAN[n:P]) = "frauen"
+DE<GEN>(WOMAN[n:P]) = "frauen"
+DE<DAT>(WOMAN[n:P]) = "frauen"
+DE<ACC>(WOMAN[n:P]) = "frauen"
+
+DE<NOM,S>(DDET[was: $1]) = "der" DE<NOM,S,M>($1)
+DE<NOM,S>(DDET[was: $1]) = "die" DE<NOM,S,F>($1)
+DE<NOM,S>(DDET[was: $1]) = "das" DE<NOM,S,N>($1)
+DE<NOM,P>(DDET[was: $1]) = "die" DE<NOM,P>($1)
+
+DE<NOM,S>(IDET[was: $1]) = "ein" DE<NOM,S,M>($1)
+DE<NOM,S>(IDET[was: $1]) = "eine" DE<NOM,S,F>($1)
+DE<NOM,S>(IDET[was: $1]) = "ein" DE<NOM,S,N>($1)
+
+DE<NOM,S>(EVERY[was: $1]) = "jeder" DE<NOM,S,M>($1)
+DE<NOM,S>(EVERY[was: $1]) = "jede" DE<NOM,S,F>($1)
+DE<NOM,S>(EVERY[was: $1]) = "jedes" DE<NOM,S,N>($1)
+DE<GEN,S>(EVERY[was: $1]) = "jedes" DE<GEN,S,M>($1)
+DE<GEN,S>(EVERY[was: $1]) = "jeder" DE<GEN,S,F>($1)
+DE<GEN,S>(EVERY[was: $1]) = "jedes" DE<GEN,S,N>($1)
+DE<DAT,S>(EVERY[was: $1]) = "jedem" DE<DAT,S,M>($1)
+DE<DAT,S>(EVERY[was: $1]) = "jeder" DE<DAT,S,F>($1)
+DE<DAT,S>(EVERY[was: $1]) = "jedem" DE<DAT,S,N>($1)
+DE<ACC,S>(EVERY[was: $1]) = "jeden" DE<ACC,S,M>($1)
+DE<ACC,S>(EVERY[was: $1]) = "jede" DE<ACC,S,F>($1)
+DE<ACC,S>(EVERY[was: $1]) = "jedes" DE<ACC,S,N>($1)
+
+DE(LOVE[wer: $1, was: $2]) = DE<P1,S,NOM>($1) "liebe" DE<ACC>($2)
+DE(LOVE[wer: $1, was: $2]) = DE<P2,S,NOM>($1) "liebst" DE<ACC>($2)
+DE(LOVE[wer: $1, was: $2]) = DE<P1,S,NOM>($2) "werde" "von" DE<DAT>($1) "geliebt"
+DE(LOVE[wer: $1, was: $2]) = DE<P2,P,NOM>($2) "werdet" "von" DE<DAT>($1) "geliebt"
+DE(LOVE[wer: $1, was: $2]) = DE<P2,S,NOM>($2) "wirst" "von" DE<DAT>($1) "geliebt"
+
+DE(LOVE[wer: $1, was: $2]) = DE<P1,S,NOM>($2) "werde"  DE<P>($1)
+DE(LOVE[wer: $1, was: $2]) = DE<P2,S,NOM>($2) "wirst"  DE<P>($1)
+DE(LOVE[wer: $1, was: $2]) = DE<P3,S,NOM>($2) "wird"   DE<P>($1)
+DE(LOVE[wer: $1, was: $2]) = DE<P1,P,NOM>($2) "werden" DE<P>($1)
+DE(LOVE[wer: $1, was: $2]) = DE<P2,P,NOM>($2) "werdet" DE<P>($1)
+DE(LOVE[wer: $1, was: $2]) = DE<P3,P,NOM>($2) "werden" DE<P>($1)
+
+$1 wird von $2 PART($3)
